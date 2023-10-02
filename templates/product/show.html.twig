@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ product.name }} Tibetandco{% endblock %}
+
+{% block body %}
+
+{# <h3>{{ product.name }}</h3> #}
+<!-- Start Product Section -->
+		<div class="product-section">
+			<div class="container">
+				<div class="row">
+
+					<!-- Start Column 2 -->
+					<div class="col-12 col-md-4 col-lg-4 mb-5 mb-md-0 text-center">
+						{# <a class="product-item" href="{{ path('detail', {id: product.id})}}"> #}
+							<a href="{{ path('product', {"slug": product.slug}) }}"><img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid"></a>
+						    {# <img src="images/product-1.png" class="img-fluid"> #}
+							<h3 class="product-title">{{ product.name|upper }}</h3>
+							<strong class="product-price">{{ product.price /100 }}€</strong>
+                    </a>
+					</div> 
+					<div class="col-lg-6 order-3">
+                    <div class="product_description">
+                        <nav>
+                            {# <ol class="breadcrumb">
+                                <li class="breadcrumb-item"><a href="{{ path('home')}}">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ path('shop')}}">shop</a></li>
+                            </ol> #}
+                        </nav>
+                      
+                        <div class="product_name"><strong>Category:</strong> {{ product.category.name }}</div>
+                        <div class="product_name"><strong>Couleur:</strong> {{ product.couleur }}</div>
+                        <div> <span class="product_price"><strong>Prix:</strong> {{ product.price /100 }}€</span> 
+                        <hr class="singleline">
+                        <h5>Description</h5>
+                        <div> <span class="product_info">{{ product.description }}<span></div>
+                        <a class="nav-link" href="{{ path('add_to_cart',{ 'id' : product.id }) }}"  >  
+                            <span class=""><i class="fa fa-shopping-cart fa-3x" aria-hidden="true"></i></span></a>
+     
+    </div>
+					<!-- End Column 2 -->
+
+				</div>
+			</div>
+		</div>
+		<!-- End Product Section -->
+</div>
+
+<hr>
+
+<h3 class="mt-5 text-center">Nos Meilleures ventes</h3>
+<p class=" mb-5 text-center">Découverez les articles les plus vendus</p>
+<div class="row">
+       <!-- Start Column 2 -->
+                    {% for product in products %}
+					<div class="col-md-3">
+						{% include 'product/single_product.html.twig' %}
+					</div>
+                    {% endfor %}
+					<!-- End Column 2 -->
+</div>
+{% endblock %}
+{# <h1>Nos Produits</h>
+<hr>
+{% for product in products %}
+<div class="row-md-4">
+  <div class="product-item text-center ">
+  <img src="/uploads/{{ product.illustration }}" alt="{{ product.name }}" class="img-fluid">
+  <h5>{{ product.name }}</h5>
+  <span>{{ Product.subtitle }}</span>
+  {{ product.price }}
+  </div>
+  </div>
+</div>
+{% endfor %} #}
+{# {% endblock %} #}

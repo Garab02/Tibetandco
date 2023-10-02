@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos-produits Tibetandco{% endblock %}
+
+{% block body %}
+<!-- Start Product Section -->
+		<div class="product-section mt-5 ms-5 me-5">
+{# <h1>Products:({{ products.getTotalItemCount }})</h1> #}
+		
+			  <div class="row">
+
+					 <!-- Start Column 1 -->
+					<div class="col-md-3">
+						<h3>Filtrer</h3>
+						{{ form(form)}}
+					</div> 
+				<div class="col-md-9">
+           <div class="row container mb-5">
+					{# <!-- Start Column 1 -->
+					<div class="col-md-12 col-lg-3 mb-lg-0 mt-5">
+						<h2 class="mb-4 section-title">Bienvenue dans La Boutique Tibétaine.</h2>
+						<p class="mb-4">La plupart de nos produits sont fabriqués à la main par des réfugiés tibétains</p>
+						<p><a href="shop.html" class="btn">Explorer</a></p>
+					</div> 
+					<!-- End Column 1 --> #}
+
+					<!-- Start Column 2 -->
+                    {% for product in products %}
+					<div class="col-md-4">
+					{% include 'product/single_product.html.twig' %}
+					</div>
+                    {% endfor %}
+					<!-- End Column 2 -->
+    {# {{ knp_pagination_render(products)}} #}
+                 </div>
+				</div>
+			</div>
+		</div>
+		<!-- End Product Section -->
+{% endblock %}
+

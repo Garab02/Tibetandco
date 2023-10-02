@@ -1,0 +1,233 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Confirmation de Commande - tibetandco{% endblock %}
+
+{% block body %}
+   {# {{ dump(order) }} #}
+<div class="container mt-3 ms-5 me-5 mb-5 text-center">
+   <h2>Confirmation de commande</h2>
+</div>
+
+<div class="container mt-5 mb-5 text-center">
+   <h2>Confirmation de commande</h2>
+<div class="container mt-5 mb-5">
+
+        <div class="row d-flex justify-content-center">
+
+            <div class="col-md-8">
+
+                <div class="card">
+
+
+                        <div class="text-left logo p-2 px-5">
+
+                            <img src="/images/Tibetandco-logo2.png" width="50">
+                            
+
+                        </div>
+
+                        <div class="invoice p-5">
+
+                            <h5 class="text-success">Commande confirmée !</h5>
+
+                            <span class="font-weight-bold d-block mt-4">Bonjour {{ order.user.firstname }} {{ order.user.lastname }}</span>
+                            <span>Votre commande a été confirmée et sera expédiée dans les deux prochains jours !</span><br>
+                            <span>Pour suivre votre commande ,rendez-vous dans votre <a href="{{ path('account')}}"><strong>compte</strong></a></span>
+
+                            <div class="payment border-top mt-3 mb-3 border-bottom table-responsive">
+
+                                <table class="table table-borderless">
+                                    
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="py-2">
+
+                                                    <span class="d-block text-muted">Date de Commande</span>
+                                                <span>{{order.createdAt |date('d/m/Y H:i:s')}}</span>
+                                                    
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="py-2">
+
+                                                    <span class="d-block text-muted">Numéro de Commande</span>
+                                                <span>{{ order.reference }}</span>
+                                                    
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="py-2">
+
+                                                    <span class="d-block text-muted">Payment</span>
+                                                <span><img src="https://img.icons8.com/color/48/000000/mastercard.png" width="20" /></span>
+                                                    
+                                                </div>
+                                            </td>
+
+                                            <td>
+                                                <div class="py-2">
+
+                                                    <span class="d-block text-muted">Adresse mail</span>
+                                                <span>{{ order.user.email }}</span>
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+
+
+
+
+                                
+                            </div>
+
+
+
+                               
+                                <div class="product border-bottom table-responsive">
+
+                                    <table class="table table-borderless">
+                                    <tbody>
+                                    {% for item in items %}
+                                        <tr>
+                                            <td width="20%">
+                                            
+                                            <img src="/uploads/{{ item.product.illustration }}" width="90">
+
+                                        </td>
+                                    
+                                        <td width="60%">
+                                            <span class="font-weight-bold">{{ item.product.name }}</span>
+                                            <div class="product-qty">
+                                                <span class="d-block">{{ item.quantity }}pcs</span>
+                                                <span>{{ item.product.couleur }}</span>
+                                                
+                                            </div>
+                                        </td>
+                                        <td width="20%">
+                                            <div class="text-right">
+                                                <span class="font-weight-bold">{{ (item.product.price / 100 * item.quantity) }}€</span>
+                                            </div>
+                                        </td>
+                                        </tr>
+                                        {% endfor %}
+                                        </tbody> 
+                                    </table>
+
+
+                                </div>
+
+
+
+                                <div class="row d-flex justify-content-end">
+
+                                    <div class="col-md-5">
+
+                                        <table class="table table-borderless">
+
+                                            <tbody class="totals">
+
+                                                <tr>
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="text-muted">Sous-Total</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span>{{ total / 100}}€</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                                 <tr>
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="text-muted">Livraison</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span>€</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+
+
+                                                
+
+
+                                                 
+
+
+                                                 <tr class="border-top border-bottom">
+                                                    <td>
+                                                        <div class="text-left">
+
+                                                            <span class="font-weight-bold">Total</span>
+                                                            
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="text-right">
+                                                            <span class="font-weight-bold">{{ ((total / 100))|number_format(2,',',',') }}€</span>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                
+                                            </tbody>
+                                            
+                                        </table>
+                                        
+                                    </div>
+                                    
+
+
+                                </div>
+                              
+
+                                <p>Nous enverrons un e-mail de confirmation d'expédition lorsque l'article sera expédié avec succès !</p>
+                                <p class="font-weight-bold mb-0">Merci d'avoir acheté chez nous!</p>
+                                <span>tibetandco</span>
+
+
+
+                            
+
+                        </div>
+
+
+
+            
+        </div>
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+
+
+
+{# <p>Bonjour {{ order.user.firstname}} {{ order.user.lastname}},<br/><br/>
+    Nous vous remercions pour votre commande n°{{ order.reference }}.<br/>
+    Une confirmation vient de vous être envoyé par email à l'adresse <strong>{{order.user.email}}</strong>.
+    <hr>
+    Votre commande sera livrée par <strong>{{ order.carrierName}} </strong> à l'adresse suivante: <br>
+    {{ order.delivery|raw}}
+
+</p>
+Pour suivre votre commande ,rendez-vous dans votre <a href="">compte </a> #}
+</diV>
+{% endblock %}

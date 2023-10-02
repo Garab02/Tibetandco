@@ -1,0 +1,188 @@
+<!-- /*
+* Bootstrap 5
+* Template Name: Furni
+* Template Author: Untree.co
+* Template URI: https://untree.co/
+* License: https://creativecommons.org/licenses/by/3.0/
+*/ -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Untree.co">
+  <link rel="shortcut icon" href="favicon.png">
+
+  <meta name="description" content="" />
+  <meta name="keywords" content="bootstrap, bootstrap4" />
+
+		<!-- Bootstrap CSS -->
+		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+		 {% block javascript %} {% endblock %}
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+		<link href="/css/tiny-slider.css" rel="stylesheet">
+		<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+		<title>{% block title %}Tibetandco-Home{% endblock %}</title>
+	</head>
+
+	<body>
+		<!-- Start Header/Navigation -->
+		<nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark fixed-top" arial-label="Furni navigation bar">
+
+			<div class="container">
+				<a class="navbar-brand" href="{{ path('home')}}"><img src="/images/Tibetandco-logo2.png" alt="Logo" style=" width:1em; height:1em;"><span>.</span></a>
+
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<div class="collapse navbar-collapse" id="navbarsFurni">
+					<ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+						{# <li class="nav-item active">
+							<a class="nav-link" href="index.html">Home</a>
+						</li> #}
+						<li><a class="nav-link" href="{{ path('products')}}">Nos Produits</a></li>
+						<li><a class="nav-link" href="{{ path('about') }}">Qui Sommes-nous?</a></li>
+						{% if is_granted('ROLE_ADMIN')%}
+						<li><a class="nav-link" href="{{ path('admin_dashboard_index')}}">Admin</a></li>
+						{% endif %}
+						<li><a class="nav-link" href="{{ path('contact') }}">Contact</a></li>
+					</ul>
+
+					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+					     {% if app.user%}
+						<a class="nav-link" href="{{ path('account')}}"><img src="/assets/img/user-icon.png"<small>({{ app.user.firstname }})</small></a></a><br>
+						<a class="nav-link" href="{{ path('app_logout')}}"><img src="/assets/img/logout-icon.png"></a></a>
+						  {% else %}
+						 
+						<li><a class="nav-link" href="{{ path('app_login')}}"><img src="/assets/img/user-icon.png"></a></li>
+						  {% endif %}
+						<li><a class="nav-link" href="{{ path('cart')}}"><img src="/assets/img/cart-icon.png">{{ app.session.get('cart') ? app.session.get('cart')|reduce((carry, v) => carry + v) :'0'}}</a></li>
+						{# {% set cart = app.session.get('cart') %}{% set qteCart = 0 %}
+						{% for quantity in cart %}
+						{% set qteCart = qteCart + quantity %}
+						{% endfor %}
+						{{ qteCart }} #}
+					</ul>
+				</div>
+			</div>
+				
+		</nav>
+		<!-- End Header/Navigation -->
+{% if block('hero') is defined %}
+		<!-- Start Hero Section -->
+			<div class="hero">
+				<div class="container">
+					<div class="row justify-content-between">
+						<div class="col-lg-5">
+							<div class="intro-excerpt">
+								<h1>Modern Interior <span clsas="d-block">Design Studio</span></h1>
+								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
+								<p><a href="" class="btn btn-secondary me-2">Shop Now</a><a href="#" class="btn btn-white-outline">Explore</a></p>
+							</div>
+						</div>
+						<div class="col-lg-7">
+							<div class="hero-img-wrap">
+								<img src="images/couch.png" class="img-fluid">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- End Hero Section -->
+{% endif %}
+
+		{% block body %}
+{# {% if block('hero') is not defined %}mt-2{% endif %} #}
+		{% endblock %}
+
+
+		<!-- Start Footer Section -->
+		<footer class="footer-section">
+			<div class="container relative">
+
+				{# <div class="sofa-img">
+					<img src="images/Tibetandco-logo2.png" alt="Image" style=" width:5em; height:5em;">
+				</div> #}
+				<div class="row g-5">
+					<div class="col-lg-4">
+						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Tibetandco<span>.</span></a></div>
+						<p class="mb-4">Le Tibet est un pays asiatique situé entre l'inde et la chine. La majeure zone partie du Tibet est zone traditionnellement considérée comme le plateau tibétain, une vaste plaine élevée formée par la montée de la chaîne de montagnes himalayenne. Avec une altitude moyenne de 14 000 pieds (4 380 mètres) au-dessus du niveau de la mer, le Tibet est la région la plus élevée de la Terre et a été surnommée « le toit du monde ». Sur les dix plus hautes montagnes du monde, quatre se trouvent au Tibet.</p>
+
+						<ul class="list-unstyled custom-social">
+							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
+							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
+						</ul>
+					</div>
+
+					<div class="col-lg-8">
+						<div class="row links-wrap">
+							<div class="col-6 col-sm-6 col-md-4">
+								<ul class="list-unstyled">
+									<li><a href="{{ path('about')}}">Qui sommes-nous?</a></li>
+									<li><a href="{{ path('about')}}">Tibet?</a></li>
+									<li><a href="{{ path('products')}}">Produits</a></li>
+									<li><a href="{{ path('register')}}">Inscription</a></li>
+									<li><a href="{{ path('contact')}}">Contact</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-4">
+								<ul class="list-unstyled">
+									<li><a href="#">Méditation</a></li>
+									<li><a href="#">Livre</a></li>
+									<li><a href="#">vetement</a></li>
+								</ul>
+							</div>
+
+							<div class="col-6 col-sm-6 col-md-4">
+								<ul class="list-unstyled">
+									<li><a href="#">Soind'hygène</a></li>
+									<li><a href="#">Accessoiries</a></li>
+									<li><a href="#">Bijoux</a></li>
+								</ul>
+							</div>
+
+							
+						</div>
+					</div>
+
+				</div>
+
+				<div class="border-top copyright">
+					<div class="row pt-4">
+						<div class="col-lg-6">
+							<p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash;Tibetandco  <!-- License information: https://untree.co/license/ -->
+            </p>
+						</div>
+
+						<div class="col-lg-6 text-center text-lg-end">
+							<ul class="list-unstyled d-inline-flex ms-auto">
+								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
+		</footer>
+		<!-- End Footer Section -->	
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+		<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
+		{% block js %}{% endblock %}
+		<script src="js/tiny-slider.js"></script>
+		<script src="js/custom.js"></script>
+		
+		
+	</body>
+	
+</html>
+

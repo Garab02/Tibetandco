@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Valider ma commande - Tibetandco{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2>Je passe ma commande</h2>
+<p>Chosissez vos préférences avant de passer votre commande sur Tibetandco</p>
+<hr>
+{# {% set total = null %} #}
+{% for item in cart %}
+<div class="row {% if item > 0 %}mt-2{% endif %}">
+{% endfor %}
+
+   <div class="col-md-4">
+     {% set formHtml %}
+        {{ form_start(form,{action:path('recap')}) }}
+        {{ form_label(form.addresses, 'Choisissez votre adresse de livraison')}}
+        <a href="{{ path('account_address_add')}}">Ajouter une nouvelle adresse</a>
+        <hr>
+        {{ form_end(form) }}
+     {% endset %}
+     {{ formHtml|replace({'[br]': '<br/>'})|raw  }}
+   </div>
+   
+   <div class="col-md-6">
+   <b>Récap de ma commande</b><br>
+    {% for item in cart %}
+    <div class="row">
+    <div class="col-4">
+     <img src="/uploads/{{ item.product.illustration }}"alt="{{ item.product.name }}"  style="width:6em; height:6em;">
+     </div>
+     <div class="col-4">
+     {{ item.product.name }}<br>
+     <small style="color: green;">{{ item.product.subtitle }}</small>
+     </div>
+     <div class="col-2">{{ item.quantity }}pcs</div>
+
+     <div class="col-2">{{ (item.product.price / 100 * item.quantity) }}€</div><br><br>
+     </div>
+    
+     {# {% set total = (item.product.price * item.quantity)%} #}
+       {% endfor %}
+       <hr>
+      <div class="row">
+      <div class="col-10">Sous-Total</div>
+      <div class="col-2">{{ total / 100 }}€</div>
+      </div>
+      {% if (total / 100) >= 50 %}
+      <div class="row">
+      <div class="col-10">Livraison</div>
+      <div class="col-2 text-success">Gratuit</div>
+      </div>
+      {% else %}
+      <div class="row">
+      <div class="col-7">Livraison</div>
+      <div class="col-5 text-danger">Frais de Livraison à payer</div>
+      </div>
+      {% endif %}
+      <div class="row">
+      <div class="col-10">Total</div>
+      <div class="col-2">{{ total / 100 }}€</div>
+      </div>
+     <br>
+   </div>
+   </div>
+   </div>
+</div>
+</diV>
+
+{% endblock %}
+
+
+
+
+

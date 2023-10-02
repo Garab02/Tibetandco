@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!-- Hero -->
+<div class="p-5 text-center bg-image rounded-3 mt-5">
+    <img src="images/sumdho.jpg"
+          class="img-fluid" alt="Sample image">
+  <div class="mask" style="">
+    <div class="d-flex justify-content-center align-items-center h-100">
+      <div class="text-dark fs-4">
+        <h1 class="mb-3">བཀྲ་ཤིས་བདེ་ལེགས|TASHI DELEK!</h1>
+		{# <a class="btn btn-outline-light btn-lg" href="{{ path('shop')}}" role="button">Explore</a> #}
+		<p class="text-info"{% for message in app.flashes('book_inscription') %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Yeah!</strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+  {% endfor %}
+  {% if is_granted('ROLE_ADMIN')%}
+  <h2>Bravo! vous etes bien connecté avec role Admin. votre email est: {{app.user.email}}</h2>
+  {% else %}
+  <h1>Bienvenue</h1>
+  {% endif %}
+    {# {{ dump(app.user)}} #} 
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Hero -->
+<div class="container">
+					<div class="col-12 mt-5 mb-5">
+          <a href="{{ path('products')}}"><img src="images/sac.png" class="ms-5 me-2 mt-3 mb-3"></a>
+          <a href="{{ path('products')}}"><img src="images/sorig.png" class="ms-5 me-2 mt-3 mb-3"></a>
+          <a href="{{ path('products')}}"><img src="images/housse-coussin.png" class="ms-5 me-2 mt-3 mb-3"></a>
+         <a href="{{ path('products')}}" class="btn btn-primary cart-btn-transform m-3" data-abc="true">Boutique</a>
+
+				</div>
+		</div>
+    <marquee width="80%"
+             class="text-success">
+        <h3>|||      RETOUR GRATUIT SOUS 30 JOURS   |||</h3>
+    </marquee>
+    
+		<!-- End Product Section -->
+<hr>
+<h3 class="mt-5 text-center">Nos Meilleures ventes</h3>
+<p class=" mb-5 text-center">Découverez les articles les plus vendus</p>
+<div class="row">
+       <!-- Start Column 2 -->
+                    {% for product in products %}
+					<div class="col-md-3">
+						{% include 'product/single_product.html.twig' %}
+					</div>
+                    {% endfor %}
+					<!-- End Column 2 -->
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container mt-5">
+Contact
+</div>
+<div class="container mt-5">
+<section class="vh-100">
+  <div class="container-fluid h-custom">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-md-9 col-lg-6 col-xl-5">
+        <img src="assets/img/background.jpg"
+          class="img-fluid" alt="Sample image">
+      </div>
+      <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+<div class="container mt-5">
+{% for message in app.flashes('contact_success') %}
+  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+  <strong>Yeah!</strong> {{message}}
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+{% endfor %}
+    <h3 class="mt-5 text-center">Formulaire de Contact</h3>
+    {# {{ form(formContact) }} #}
+    {{ form_start(formContact) }}
+  <div class="row">
+    <div class="col-12">
+    {{ form_row(formContact.sujet) }}
+    </div>
+    <div class="col-12">
+    {{ form_row(formContact.email)}}
+    
+    </div>
+    <div class="col-12">
+    {{ form_row(formContact.message) }}
+    </div>
+    
+
+    <input type="submit" class="btn btn-primary mt-2 mb-4 btn-sm" value="Enoyer"/>
+{{ form_end(formContact) }}
+    </div>
+    </div>
+
+
+        </form>
+      </div>
+    </div>
+  </div> 
+</section>
+
+    </div> 
+{% endblock %}
+

@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur de paiement - tibetandco{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5 ms-5 me-5">
+<h2>Erreur de paiement</h2>
+<p>Bonjour {{ order.user.firstname}}{{ order.user.lastname}},<br/><br/>
+    Il semblerait que votre paiement est échoué pour votre commande n°{{ order.reference }}.<br/>
+    Une confirmation d'eereur vient de vous être envoyé par email à l'adresse <strong>{{order.user.email}}.</strong>
+    <hr>
+
+</p>
+<a href="{{ path('order')}}" class="btn btn-success">Réessayer le paiement</a>
+</div>
+{% endblock %}
