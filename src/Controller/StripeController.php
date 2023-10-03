@@ -46,19 +46,25 @@ class StripeController extends AbstractController
                 'quantity' => $product->getQuantity(),
               ];
         }
-
-        $products_stripe[] = [
-          'price_data' => [
-            'currency' => 'eur',
-            'product_data' => [
-              'name' => $order->getCarrierName(),
-              'images' => [$YOUR_DOMAIN]
-            ],
-            'unit_amount' => $order->getCarrierPrice(),
-          ],
-          'quantity' => 1,
-        ];
-        
+//        dd($products_stripe);
+// if($product->getPrice() >= 50 )
+// {
+//   ///
+// }
+// else
+// {
+   $products_stripe[] = [
+    'price_data' => [
+      'currency' => 'eur',
+      'product_data' => [
+        'name' => $order->getCarrierName(),
+        'images' => [$YOUR_DOMAIN]
+      ],
+      'unit_amount' => $order->getCarrierPrice(),
+    ],
+    'quantity' => 1,
+  ];
+// }        
         // dd($products_stripe);
 
         Stripe::setApiKey('sk_test_51NBHcEIryeQax2zwR9tteGn2j4AB3Z3MD8zZEEy9iIRWqJoPKxUyGAyBsLSoVJxnX4XoBPnvsSxaD4hhiMGLNmau00fMwmC2Rg');
