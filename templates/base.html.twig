@@ -53,7 +53,7 @@
 					<ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
 					     {% if app.user%}
 						<a class="nav-link" href="{{ path('account')}}"><img src="/assets/img/user-icon.png"<small>({{ app.user.firstname }})</small></a></a><br>
-						<a class="nav-link" href="{{ path('app_logout')}}"><img src="/assets/img/logout-icon.png"></a></a>
+						{# <a class="nav-link" href="{{ path('app_logout')}}"><img src="/assets/img/logout-icon.png"></a></a> #}
 						  {% else %}
 						 
 						<li><a class="nav-link" href="{{ path('app_login')}}"><img src="/assets/img/user-icon.png"></a></li>
